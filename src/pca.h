@@ -12,6 +12,7 @@ public:
     Eigen::MatrixXd transform(Matrix X);
 private:
 
+    int _n_components;
     Eigen::VectorXd _mean; // media de la muestra
     int _n; // cantidad de imagenes en la muestra
     Eigen::MatrixXd _P; // matriz de cambio de base

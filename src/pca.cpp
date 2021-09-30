@@ -7,7 +7,7 @@ using namespace std;
 
 PCA::PCA(unsigned int n_components)
 {
-
+    _n_components = n_components;
 }
 
 void PCA::fit(Matrix X)
@@ -22,12 +22,12 @@ void PCA::fit(Matrix X)
     Eigen::MatrixXd X_u = (X - _mean)/sqrt(_n-1);
 
     // Calculo matriz de Covarianza M_x_u
-    Eigen::MatrixXd M_x = X_u.transpose() * X_u;
+    Eigen::MatrixXd M_x_u = X_u.transpose() * X_u;
 
     // Guardo matriz P = V^t de autovectores de M_x_u
     // Siendo P la matriz cambio de base
 
-    // _P = matriz de autovectores de M_x;
+    _P = (get_first_eigenvalues(M_x_u, _n_components)).second.transpose();
 
 }
 
