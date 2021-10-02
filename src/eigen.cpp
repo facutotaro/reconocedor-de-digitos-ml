@@ -13,6 +13,13 @@ pair<double, Vector> power_iteration(const Matrix& X, unsigned num_iter, double 
     /***********************
      * COMPLETAR CODIGO
      **********************/
+    for (int i = 1; i <= num_iter; i++) {
+      Vector c = (X*b).normalized();     // Aproximar hacia autovector principal
+      if ((b-c).isApproxToConstant(0, eps)) break;      // No iterar si no varía
+      b = c;
+    }
+    eigenvalue = b.dot(X*b);                   // Calcular el autovalor asociado
+    /**/
 
     return make_pair(eigenvalue, b / b.norm());
 }
@@ -26,5 +33,13 @@ pair<Vector, Matrix> get_first_eigenvalues(const Matrix& X, unsigned num, unsign
     /***********************
      * COMPLETAR CODIGO
      **********************/
+    for (int i = 0; i < num; i++) {
+      double eigvalue; Vector eigvector;
+      tie(eigvectors(i), eigvector) = power_iteration(A);  // Obtener componente
+      A -= eigvalue*eigvector.transpose()*eigvector;  // Deflacionar a la matriz
+      eigvectors.col(i) = eigvector;
+    }
+    /**/
+
     return make_pair(eigvalues, eigvectors);
 }
