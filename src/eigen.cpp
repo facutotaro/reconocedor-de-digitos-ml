@@ -13,8 +13,12 @@ pair<double, Vector> power_iteration(const Matrix& X, unsigned num_iter, double 
     /***********************
      * COMPLETAR CODIGO
      **********************/
-    for (int i = 2; i <= num_iter; i++) { b = X*b; }  // Aproximar al autovector
-    eigenvalue = b.dot(X*b) / b.dot(b);               // Calcular a su autovalor
+    for (int i = 1; i <= num_iter; i++) {
+      Vector c = (X*b).normalized();     // Aproximar hacia autovector principal
+      if ((b-c).isApproxToConstant(0, eps)) break;      // No iterar si no varía
+      b = c;
+    }
+    eigenvalue = b.dot(X*b);                   // Calcular el autovalor asociado
     /**/
 
     return make_pair(eigenvalue, b / b.norm());
