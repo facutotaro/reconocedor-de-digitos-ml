@@ -93,7 +93,7 @@ int KNNClassifier::mode(Vector &v1)
     }
     int maxIndex = 0;
     int maxCount = aux(0);
-    for (int i = 1; i < 10; i++)
+    for (int i = 0; i < 10; i++)
     {
         if (aux(i)>maxCount)
         {
