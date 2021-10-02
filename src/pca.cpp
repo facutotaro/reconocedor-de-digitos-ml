@@ -38,10 +38,10 @@ MatrixXd PCA::transform(Matrix X)
     //      que representan cada imagen
 
     // X^ = (X - medias(del fit)) /raiz(n-1)(del fit)
-    Eigen::MatrixXd X_p = (X - _mean)/sqrt(_n-1);
+    Eigen::MatrixXd X_u = (X - _mean)/sqrt(_n-1);
 
     // X_p = P.X_^
-    X_p = _P * X_p;
+    Eigen::MatrixXd X_p = _P * X_u.transpose();
 
-    return X_p;
+    return X_p.transpose();
 }
