@@ -35,7 +35,7 @@ pair<Vector, Matrix> get_first_eigenvalues(const Matrix& X, unsigned num, unsign
      **********************/
     for (unsigned i = 0; i < num; i++) {
       double eigvalue; Vector eigvector;
-      tie(eigvectors(i), eigvector) = power_iteration(A, num_iter, epsilon);  // Obtener componente
+      tie(eigvalue, eigvector) = power_iteration(A, num_iter, epsilon);  // Obtener componente
       A -= eigvalue*eigvector.transpose()*eigvector;  // Deflacionar a la matriz
       eigvectors.col(i) = eigvector;
     }
