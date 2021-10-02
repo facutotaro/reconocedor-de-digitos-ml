@@ -15,7 +15,7 @@ private:
     Matrix digits_;
     Vector labels_;
     //Calcula la distancia al cuadrado entre dos vectores
-    unsigned long squareDistance(Vector v1, Vector v2);
+    double squareDistance(Vector v1, Vector v2);
     //Encuentra los K Vecinos más cercanos
     Vector bestK(Vector v);
     //Ordena los arreglos con el mismo ordenamiento
