@@ -1,1 +1,0 @@
-/home/lucas/Desktop/MetNum/TP/TP2/metnum_tp2/notebooks/metnum.cpython-38-x86_64-linux-gnu.so
