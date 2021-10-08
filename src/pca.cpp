@@ -19,7 +19,7 @@ void PCA::fit(Matrix X)
     _mean = X.colwise().mean();
     _n = X.rows();
 
-    Matrix X_u = (X - _mean)/sqrt(_n-1);
+    Matrix X_u = (X.rowwise() - _mean.transpose())/sqrt(_n-1);
 
     // Calculo matriz de Covarianza M_x_u
     Matrix M_x_u = X_u.transpose() * X_u;
@@ -27,7 +27,7 @@ void PCA::fit(Matrix X)
     // Guardo matriz P = V^t de autovectores de M_x_u
     // Siendo P la matriz cambio de base
 
-    _P = (get_first_eigenvalues(M_x_u, _n_components)).second.transpose();
+    _P = (get_first_eigenvalues(M_x_u, _n_components)).second;
 
 }
 
@@ -38,10 +38,15 @@ MatrixXd PCA::transform(Matrix X)
     //      que representan cada imagen
 
     // X^ = (X - medias(del fit)) /raiz(n-1)(del fit)
-    Matrix X_u = (X - _mean)/sqrt(_n-1);
+    Matrix X_u = (X.rowwise() - _mean.transpose())/sqrt(_n-1);
 
     // X_p = P.X_^
-    Matrix X_p = _P * X_u.transpose(); // X_p_t -> (alpha x n) = P -> (alpha x 784) . X -> (784 x n)
+    Matrix X_p = X_u * _P;
 
-    return X_p.transpose(); // X_p = X_p_t.transpose()
+    return X_p; // X_p = X_p_t.transpose()
+
+    //X_p_t = P * X_t
+    //X_p = X * P_t
+    // X_p = n*alpha, P = 784 * alpha, X = n* 748
+    // X * P_t = n * alpha
 }
