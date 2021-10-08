@@ -11,10 +11,10 @@
 
 ## Experimentacion
 
-- KNN con y sin PCA. Variando k y α.
-- KNN con PCA, variando cantidad de imagenes (preguntar)
-- ¿como se relacione k con el conjunto de entrenamiento?
-- K-fold (ya veremos)
+- KNN con y sin PCA. Variando k y α. (Lucas)
+- KNN con PCA, variando cantidad de imagenes (Plantita)
+- ¿como se relacione k con el conjunto de entrenamiento? (Facu)
+- K-fold (Pablo)
 
 ### consideraciones:
 
