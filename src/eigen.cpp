@@ -15,9 +15,11 @@ pair<double, Vector> power_iteration(const Matrix& X, unsigned num_iter, double 
      **********************/
     for (unsigned i = 1; i <= num_iter; i++) {
       Vector c = (X*b).normalized();     // Aproximar hacia autovector principal
-      if ((b-c).isApproxToConstant(0, eps)) break;      // No iterar si no varía
+      double angulo = b.transpose() * c;
       b = c;
-    }
+      if (1-eps < angulo) break;      // No iterar si no varía
+      //if ((b-c).isApproxToConstant(0, eps)) break;      // No iterar si no varía
+    } 
     eigenvalue = b.dot(X*b);                   // Calcular el autovalor asociado
     /**/
 

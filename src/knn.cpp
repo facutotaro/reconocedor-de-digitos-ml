@@ -23,15 +23,15 @@ Vector KNNClassifier::predict(Matrix X)
     auto ret = Vector(X.rows());
 
 
+    vector<pair<double, int>> distancias(digits_.rows()); //O(digits)
     for (unsigned k = 0; k < X.rows(); ++k)
     {   
-        vector<pair<double, int>> distancias(digits_.rows());
-        for(int i = 0; i < digits_.rows();i++){
+        for(int i = 0; i < digits_.rows();i++){ //O(digits)
             Vector v = X.row(k) - digits_.row(i); 
             distancias[i] = {v.squaredNorm(), etiquetas_(i)};
         }
 
-        sort(distancias.begin(), distancias.end());
+        nth_element(distancias.begin(), distancias.begin()+n_neighbors_, distancias.end());
 
         vector<int> res(10, 0);
         for(unsigned int j = 0; j < n_neighbors_; j++){
