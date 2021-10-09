@@ -23,10 +23,10 @@ Vector KNNClassifier::predict(Matrix X)
     auto ret = Vector(X.rows());
 
 
-    vector<pair<double, int>> distancias(digits_.rows()); //O(digits)
+    vector<pair<double, int>> distancias(digits_.rows()); 
     for (unsigned k = 0; k < X.rows(); ++k)
     {   
-        for(int i = 0; i < digits_.rows();i++){ //O(digits)
+        for(int i = 0; i < digits_.rows();i++){ 
             Vector v = X.row(k) - digits_.row(i); 
             distancias[i] = {v.squaredNorm(), etiquetas_(i)};
         }
