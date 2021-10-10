@@ -22,19 +22,16 @@ Vector KNNClassifier::predict(Matrix X)
     // Creamos vector columna a devolver
     auto ret = Vector(X.rows());
 
-    // Para cada imagen
+    vector<pair<double, int>> distancias(digits_.rows()); 
     for (unsigned k = 0; k < X.rows(); ++k)
-    {
-        // Armo vector <distancia, etiqueta>
-        vector<pair<double, int>> distancias(digits_.rows());
+    {   
         for(int i = 0; i < digits_.rows();i++){
             Vector v = X.row(k) - digits_.row(i); 
             distancias[i] = {v.squaredNorm(), etiquetas_(i)};
         }
 
-        // Ordeno vector
-        //sort(distancias.begin(), distancias.end());
-        insertarHasta(distancias, n_neighbors_);
+
+        nth_element(distancias.begin(), distancias.begin()+n_neighbors_, distancias.end());
 
         // Cuento las etiquetas de los vecinos mas cercanos
         vector<int> res(10, 0);
