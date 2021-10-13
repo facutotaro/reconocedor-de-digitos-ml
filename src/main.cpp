@@ -41,16 +41,16 @@ int main(int argc, char** argv){
     dist[7].first = 1;
     dist[7].second = 0;
 
-    dist[8].first = 0;
+    dist[8].first = 4;
     dist[8].second = 0;
 
     dist[9].first = 10;
     dist[9].second = 0;
 
-    clf.insertarHasta(dist, 3);
+    vector<pair<double, int>> res = clf.buscarMasCercanos(dist);
 
-    for(long unsigned int i = 0; i < dist.size(); i++){
-        cout << dist[i].first << endl;
+    for(long unsigned int i = 0; i < res.size(); i++){
+        cout << res[i].first << endl;
     }
 
   return 0;

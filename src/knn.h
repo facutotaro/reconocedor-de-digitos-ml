@@ -12,7 +12,7 @@ public:
 
     Vector predict(Matrix X);
 
-    void insertarHasta(vector<pair<double, int>> &dist, int n);
+    vector<pair<double,int>> buscarMasCercanos(vector<pair<double,int>> &distancias);
 
 private:
     unsigned int n_neighbors_;
