@@ -12,8 +12,6 @@ public:
 
     Vector predict(Matrix X);
 
-    vector<pair<double,int>> buscarMasCercanos(vector<pair<double,int>> &distancias);
-
 private:
     unsigned int n_neighbors_;
     Matrix digits_;
